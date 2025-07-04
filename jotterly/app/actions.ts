@@ -1,5 +1,6 @@
 "use server";
 
+import { db } from "@/lib/db";
 import { createServerClient } from "@/lib/supabase/server";
 import { handleError } from "@/lib/utils";
 
@@ -29,6 +30,13 @@ export async function signUpAction(email: string, password: string) {
 
     const userId = data.user?.id;
     if (!userId) throw new Error("Error signing up");
+
+    await db.user.create({
+      data: {
+        id: userId,
+        email,
+      },
+    });
 
     return { errorMessage: null };
   } catch (error) {
