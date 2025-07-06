@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signOutAction } from "@/app/actions";
+import { signOutAction } from "@/app/(auth)/actions";
 
 export function SignOutButton() {
   const [pending, setPending] = useState(false);

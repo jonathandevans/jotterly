@@ -1,13 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 import { useTransition } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { signInAction, signUpAction } from "@/app/actions";
+import { signInAction, signUpAction } from "@/app/(auth)/actions";
 
 export function AuthForm({ type }: { type: "sign-in" | "sign-up" }) {
   const router = useRouter();

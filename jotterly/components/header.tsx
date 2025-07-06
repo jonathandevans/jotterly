@@ -3,7 +3,7 @@ import Link from "next/link";
 import Logo from "@/public/logo.png";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
-import { SignOutButton } from "./sign-out-button";
+import { SignOutButton } from "./auth/sign-out-button";
 import { getUser } from "@/lib/supabase/server";
 
 export async function Header() {

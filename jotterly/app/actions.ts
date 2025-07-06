@@ -1,54 +1,20 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { createServerClient } from "@/lib/supabase/server";
+import { getUser } from "@/lib/supabase/server";
 import { handleError } from "@/lib/utils";
 
-export async function signInAction(email: string, password: string) {
+export async function updateNoteAction(noteId: string, text: string) {
   try {
-    const { auth } = await createServerClient();
-    const { error } = await auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) throw error;
+    const user = await getUser();
+    if (!user) throw new Error("You must be logged in to update a note");
 
-    return { errorMessage: null };
-  } catch (error) {
-    return handleError(error);
-  }
-}
-
-export async function signUpAction(email: string, password: string) {
-  try {
-    const { auth } = await createServerClient();
-    const { data, error } = await auth.signUp({
-      email,
-      password,
-    });
-    if (error) throw error;
-
-    const userId = data.user?.id;
-    if (!userId) throw new Error("Error signing up");
-
-    await db.user.create({
-      data: {
-        id: userId,
-        email,
+    await db.note.update({
+      where: {
+        id: noteId,
       },
+      data: { text },
     });
-
-    return { errorMessage: null };
-  } catch (error) {
-    return handleError(error);
-  }
-}
-
-export async function signOutAction() {
-  try {
-    const { auth } = await createServerClient();
-    const { error } = await auth.signOut();
-    if (error) throw error;
 
     return { errorMessage: null };
   } catch (error) {
