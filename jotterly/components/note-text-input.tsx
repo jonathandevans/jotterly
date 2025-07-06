@@ -40,7 +40,7 @@ export function NoteTextInput({ noteId, startingNoteText }: Props) {
       value={noteText}
       onChange={handleNoteUpdate}
       placeholder="Type your note here..."
-      className="custom-scrollbar mb-4 h-full max-w-4xl resize-none border p-4 placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+      className="custom-scrollbar mb-4 h-full max-w-4xl resize-none border p-8 placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
     />
   );
 }
